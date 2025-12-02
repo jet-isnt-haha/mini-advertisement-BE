@@ -1,0 +1,96 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-lock.yaml
+package-lock.json
+/dist
+/build
+/.cache
+/.parcel-cache
+/.next
+/.nuxt
+/out
+/.turbo
+/coverage
+/.vcache
+
+# Environment files
+.env
+.env.local
+.env.*.local
+.env.test
+.env.production
+.env.*.secret
+
+# Logs
+logs
+*.log
+*.log.*
+/debug.log
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE / Editor
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+*.iml
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.swp
+*~ 
+
+# Docker
+docker-compose.override.yml
+Dockerfile.build
+/.docker
+
+# Python (common, if any)
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+ENV/
+
+# Java / JVM (common)
+*.class
+*.jar
+*.war
+*.ear
+target/
+build/
+.gradle/
+.idea/
+
+# Go
+bin/
+pkg/
+
+# Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# CI / Build artifacts
+/*.log
+/*.out
+
+# Secrets (ensure any other secret file patterns are added)
+*.pem
+*.key
+*.crt
+
+# Custom local overrides
+.local/
