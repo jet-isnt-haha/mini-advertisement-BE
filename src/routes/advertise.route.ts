@@ -1,9 +1,20 @@
 import express from "express";
 import createAdController from "@/controllers/advertise.controller";
+import createAdServices from "@/services/advertise.services";
+import { readFromJson, writeToJson } from "@/utils/dataHelper";
 
 const ad_router = express.Router();
 
-const adController = createAdController();
+//数据访问对象
+const dataAccess = {
+  read: readFromJson,
+  write: writeToJson,
+};
+
+const adServices = createAdServices(dataAccess);
+const adController = createAdController(adServices);
+
+const GET_ALL_ADS = "/ads";
 
 const CREATE_AD = "/create_ad";
 
@@ -15,6 +26,7 @@ const QUERY_AD = "/advertise/:id";
 
 const COUNTBYCLICK = "/count_click";
 
+ad_router.get(GET_ALL_ADS, adController.queryAdertiseMent);
 ad_router.post(CREATE_AD, adController.createAdertiseMent);
 ad_router.post(EDIT_AD, adController.editAdertiseMent);
 ad_router.post(DELETE_AD, adController.deleteAdertiseMent);
