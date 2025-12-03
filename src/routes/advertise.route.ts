@@ -26,7 +26,7 @@ const QUERY_AD = "/advertise/:id";
 
 const COUNTBYCLICK = "/count_click";
 
-ad_router.get(GET_ALL_ADS, adController.queryAdertiseMent);
+ad_router.get(GET_ALL_ADS, adController.getAllAdertiseMents);
 ad_router.post(CREATE_AD, adController.createAdertiseMent);
 ad_router.post(EDIT_AD, adController.editAdertiseMent);
 ad_router.post(DELETE_AD, adController.deleteAdertiseMent);

@@ -1,15 +1,25 @@
 import createAdServices from "@/services/advertise.services";
+import { advertisementMeta, ApiResponse } from "@/types";
 import { Request, Response } from "express";
 
 type AdServices = ReturnType<typeof createAdServices>;
 const createAdController = (adServices: AdServices) => {
   const getAllAdertiseMents = async (req: Request, res: Response) => {
     try {
-      console.log("aa");
       const ads = await adServices.getAllAdertiseMents();
-      res.status(200).json(ads);
+      const response: ApiResponse<advertisementMeta[]> = {
+        code: 0,
+        data: ads,
+        message: "Advertisements retrieved successfully",
+      };
+      res.status(200).json(response);
     } catch (error) {
-      res.status(500).json({ message: "Failed to get advertisements" });
+      const response: ApiResponse<null> = {
+        code: 500,
+        data: null,
+        message: "Failed to retrieve advertisement",
+      };
+      res.status(500).json(response);
     }
   };
   const createAdertiseMent = async (req: Request, res: Response) => {
@@ -17,13 +27,60 @@ const createAdController = (adServices: AdServices) => {
       const adData = req.body;
       console.log(adData);
       await adServices.createAdertiseMent(adData);
-      res.status(201).json({ message: "Advertisement created successfully" });
+      const response: ApiResponse<null> = {
+        code: 0,
+        data: null,
+        message: "Advertisement created successfully",
+      };
+      res.status(201).json(response);
     } catch (error) {
-      res.status(500).json({ message: "Failed to create advertisement" });
+      const response: ApiResponse<null> = {
+        code: 500,
+        data: null,
+        message: "Failed to create advertisement",
+      };
+      res.status(500).json(response);
     }
   };
-  const editAdertiseMent = () => {};
-  const deleteAdertiseMent = () => {};
+  const editAdertiseMent = async (req: Request, res: Response) => {
+    const adData = req.body;
+    try {
+      await adServices.editAdertiseMent(adData);
+      const response: ApiResponse<null> = {
+        code: 0,
+        data: null,
+        message: "Advertisement edited successfully",
+      };
+      res.status(200).json(response);
+    } catch (error) {
+      const response: ApiResponse<null> = {
+        code: 500,
+        data: null,
+        message: "Failed to edit advertisement",
+      };
+      res.status(500).json(response);
+    }
+  };
+  const deleteAdertiseMent = async (req: Request, res: Response) => {
+    try {
+      const adData = req.body;
+      console.log(adData);
+      await adServices.deleteAdertiseMent(adData.id);
+      const response: ApiResponse<null> = {
+        code: 0,
+        data: null,
+        message: "Advertisement deleted successfully",
+      };
+      res.status(200).json(response);
+    } catch (error) {
+      const response: ApiResponse<null> = {
+        code: 500,
+        data: null,
+        message: "Failed to delete advertisement",
+      };
+      res.status(500).json(response);
+    }
+  };
   const queryAdertiseMent = () => {};
   const countUpAdertiseMent = () => {};
 

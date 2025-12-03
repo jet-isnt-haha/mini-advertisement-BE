@@ -23,3 +23,9 @@ export interface DataAccess {
   read: () => Promise<DBjson>;
   write: (data: DBjson) => Promise<void>;
 }
+
+export interface ApiResponse<T> {
+  code: number;
+  data: T | null;
+  message?: string;
+}
