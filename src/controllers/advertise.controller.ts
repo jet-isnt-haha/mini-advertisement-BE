@@ -63,9 +63,8 @@ const createAdController = (adServices: AdServices) => {
   };
   const deleteAdertiseMent = async (req: Request, res: Response) => {
     try {
-      const adData = req.body;
-      console.log(adData);
-      await adServices.deleteAdertiseMent(adData.id);
+      const data = req.body;
+      await adServices.deleteAdertiseMent(data.id);
       const response: ApiResponse<null> = {
         code: 0,
         data: null,
@@ -82,7 +81,25 @@ const createAdController = (adServices: AdServices) => {
     }
   };
   const queryAdertiseMent = () => {};
-  const countUpAdertiseMent = () => {};
+  const countUpAdertiseMent = async (req: Request, res: Response) => {
+    try {
+      const data = req.body;
+      await adServices.countUpAdertiseMent(data.id);
+      const response: ApiResponse<null> = {
+        code: 0,
+        data: null,
+        message: "Advertisement count incremented successfully",
+      };
+      res.status(200).json(response);
+    } catch (error) {
+      const response: ApiResponse<null> = {
+        code: 500,
+        data: null,
+        message: "Failed to increment advertisement count",
+      };
+      res.status(500).json(response);
+    }
+  };
 
   return {
     getAllAdertiseMents,
