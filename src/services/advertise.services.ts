@@ -1,4 +1,5 @@
 import { advertisementMeta, DataAccess } from "@/types";
+import { getRankedAds } from "@/utils/rankHelper";
 
 const createAdServices = (dataAccess: DataAccess) => {
   const getAllAdertiseMents = async () => {
@@ -6,39 +7,50 @@ const createAdServices = (dataAccess: DataAccess) => {
     return dbData.ads;
   };
   const createAdertiseMent = async (data: advertisementMeta) => {
-    console.log("data ", data);
     const dbData = await dataAccess.read();
-    dbData.ads.push(data);
+    const newAds = [...dbData.ads, data];
+    dbData.ads = getRankedAds(newAds);
     await dataAccess.write(dbData);
   };
   const editAdertiseMent = async (data: advertisementMeta) => {
     const id = data.id;
-    const dbData = await dataAccess.read();
-    const adIndex = dbData.ads.findIndex((ad) => ad.id === id);
-    if (adIndex !== -1) {
-      dbData.ads[adIndex] = data;
-      await dataAccess.write(dbData);
-    } else {
+    if (!id) {
       throw new Error();
     }
+    const dbData = await dataAccess.read();
+    const updatedAds = dbData.ads.map((ad) => {
+      if (ad.id === id) {
+        return { ...ad, ...data };
+      }
+      return ad;
+    });
+    dbData.ads = getRankedAds(updatedAds);
+    await dataAccess.write(dbData);
   };
   const deleteAdertiseMent = async (id: advertisementMeta["id"]) => {
-    const dbData = await dataAccess.read();
-    const deletedDbData = dbData.ads.filter((ad) => ad.id !== id);
-    await dataAccess.write({ ads: deletedDbData });
-  };
-  const queryAdertiseMent = () => {};
-  const countUpAdertiseMent = async (id: advertisementMeta["id"]) => {
-    const dbData = await dataAccess.read();
-    const adIndex = dbData.ads.findIndex((ad) => ad.id === id);
-    if (adIndex !== -1) {
-      dbData.ads[adIndex].clickCount += 1;
-      await dataAccess.write(dbData);
-    } else {
+    if (!id) {
       throw new Error();
     }
+    const dbData = await dataAccess.read();
+    const deletedAds = dbData.ads.filter((ad) => ad.id !== id);
+    dbData.ads = getRankedAds(deletedAds);
+    await dataAccess.write(dbData);
   };
-
+  const countUpAdertiseMent = async (id: advertisementMeta["id"]) => {
+    if (!id) {
+      throw new Error();
+    }
+    const dbData = await dataAccess.read();
+    const updatedAds = dbData.ads.map((ad) => {
+      if (ad.id === id) {
+        return { ...ad, clickCount: ad.clickCount + 1 };
+      }
+      return ad;
+    });
+    dbData.ads = getRankedAds(updatedAds);
+    await dataAccess.write(dbData);
+  };
+  const queryAdertiseMent = () => {};
   return {
     getAllAdertiseMents,
     createAdertiseMent,
