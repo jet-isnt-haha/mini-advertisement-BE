@@ -1,40 +1,48 @@
 {
   "ads": [
     {
-      "title": "11123",
-      "publisher": "111",
-      "content": "111",
-      "redirectUrl": "www.baidu.con",
-      "price": 666,
-      "clickCount": 23,
-      "id": "1764807085593"
+      "title": "123",
+      "publisher": "312",
+      "content": "123",
+      "videosInfo": [
+        {
+          "uid": "1765008935887",
+          "name": "video-1765008935887-313742348.mp4",
+          "url": "http://localhost:3000/static/videos/video-1765008935887-313742348.mp4"
+        },
+        {
+          "uid": "1765008939066",
+          "name": "video-1765008939066-777304939.mp4",
+          "url": "http://localhost:3000/static/videos/video-1765008939066-777304939.mp4"
+        }
+      ],
+      "redirectUrl": "123",
+      "price": 123,
+      "clickCount": 27,
+      "id": "1765008939203"
     },
     {
-      "title": "11123",
-      "publisher": "111",
-      "content": "111",
-      "redirectUrl": "www.baidu.con",
-      "price": 665,
-      "clickCount": 22,
-      "id": "1764809248082"
-    },
-    {
-      "title": "111",
-      "publisher": "111",
-      "content": "111",
-      "redirectUrl": "www.baidu.con",
-      "price": 666,
-      "clickCount": 18,
-      "id": "1764807082656"
-    },
-    {
-      "title": "22",
-      "publisher": "111",
-      "content": "111",
-      "redirectUrl": "www.baidu.con",
-      "price": 444,
-      "clickCount": 31,
-      "id": "1764809236646"
+      "title": "222",
+      "publisher": "312",
+      "content": "123",
+      "videosInfo": [
+        {
+          "uid": "1765008935887",
+          "name": "video-1765008935887-313742348.mp4",
+          "status": "done",
+          "url": "http://localhost:3000/static/videos/video-1765008935887-313742348.mp4"
+        },
+        {
+          "uid": "1765008939066",
+          "name": "video-1765008939066-777304939.mp4",
+          "status": "done",
+          "url": "http://localhost:3000/static/videos/video-1765008939066-777304939.mp4"
+        }
+      ],
+      "redirectUrl": "123",
+      "price": 123,
+      "clickCount": 27,
+      "id": "1765008942643"
     }
   ]
 }

@@ -15,7 +15,7 @@ const createAdController = (adServices: AdServices) => {
       res.status(200).json(response);
     } catch (error) {
       const response: ApiResponse<null> = {
-        code: 500,
+        code: -1,
         data: null,
         message: "Failed to retrieve advertisement",
       };
@@ -35,7 +35,7 @@ const createAdController = (adServices: AdServices) => {
       res.status(201).json(response);
     } catch (error) {
       const response: ApiResponse<null> = {
-        code: 500,
+        code: -1,
         data: null,
         message: "Failed to create advertisement",
       };
@@ -54,7 +54,7 @@ const createAdController = (adServices: AdServices) => {
       res.status(200).json(response);
     } catch (error) {
       const response: ApiResponse<null> = {
-        code: 500,
+        code: -1,
         data: null,
         message: "Failed to edit advertisement",
       };
@@ -73,7 +73,7 @@ const createAdController = (adServices: AdServices) => {
       res.status(200).json(response);
     } catch (error) {
       const response: ApiResponse<null> = {
-        code: 500,
+        code: -1,
         data: null,
         message: "Failed to delete advertisement",
       };
@@ -93,7 +93,7 @@ const createAdController = (adServices: AdServices) => {
       res.status(200).json(response);
     } catch (error) {
       const response: ApiResponse<null> = {
-        code: 500,
+        code: -1,
         data: null,
         message: "Failed to increment advertisement count",
       };

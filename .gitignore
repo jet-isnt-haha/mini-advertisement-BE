@@ -94,3 +94,6 @@ pkg/
 
 # Custom local overrides
 .local/
+
+
+/public
