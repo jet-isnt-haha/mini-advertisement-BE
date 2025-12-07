@@ -22,6 +22,20 @@ const createAdController = (adServices: AdServices) => {
       res.status(500).json(response);
     }
   };
+  const queryAdertiseMent = () => {};
+  const getAdFormConfig = async(req:Request,res:Response)=>{
+    try {
+      const formConfig = await adServices.getAdFormConfig();
+      const response:ApiResponse<any>={
+        code:0,
+        data:formConfig,
+        message:"get form config successfully",
+      }
+      res.status(200).json(response);
+    } catch (error) {
+      
+    }
+  }
   const createAdertiseMent = async (req: Request, res: Response) => {
     try {
       const adData = req.body;
@@ -80,7 +94,6 @@ const createAdController = (adServices: AdServices) => {
       res.status(500).json(response);
     }
   };
-  const queryAdertiseMent = () => {};
   const countUpAdertiseMent = async (req: Request, res: Response) => {
     try {
       const data = req.body;
@@ -103,10 +116,11 @@ const createAdController = (adServices: AdServices) => {
 
   return {
     getAllAdertiseMents,
+    queryAdertiseMent,
+    getAdFormConfig,
     createAdertiseMent,
     editAdertiseMent,
     deleteAdertiseMent,
-    queryAdertiseMent,
     countUpAdertiseMent,
   };
 };

@@ -1,3 +1,4 @@
+import { AdFormConfig } from "@/configs/AdFormConfig";
 import { advertisementMeta, DataAccess } from "@/types";
 import { getRankedAds } from "@/utils/rankHelper";
 
@@ -6,6 +7,10 @@ const createAdServices = (dataAccess: DataAccess) => {
     const dbData = await dataAccess.read();
     return dbData.ads;
   };
+  const queryAdertiseMent = () => {};
+  const getAdFormConfig =async()=>{
+    return AdFormConfig;
+  }
   const createAdertiseMent = async (data: advertisementMeta) => {
     const dbData = await dataAccess.read();
     const newAds = [...dbData.ads, data];
@@ -50,13 +55,14 @@ const createAdServices = (dataAccess: DataAccess) => {
     dbData.ads = getRankedAds(updatedAds);
     await dataAccess.write(dbData);
   };
-  const queryAdertiseMent = () => {};
+
   return {
     getAllAdertiseMents,
+    queryAdertiseMent,
+    getAdFormConfig,
     createAdertiseMent,
     editAdertiseMent,
     deleteAdertiseMent,
-    queryAdertiseMent,
     countUpAdertiseMent,
   };
 };

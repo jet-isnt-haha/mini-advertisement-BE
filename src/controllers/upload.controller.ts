@@ -13,7 +13,6 @@ export const uploadFile = (req: Request, res: Response) => {
       };
       return res.status(400).json(response);
     }
-    console.log("resovle file!");
     const fileArray = req.files as Express.Multer.File[];
     const filesInfo = fileArray.map((file) => {
       return {
@@ -28,7 +27,6 @@ export const uploadFile = (req: Request, res: Response) => {
       data: filesInfo,
       message: "video file uploaded successfully",
     };
-    console.log("response ", response);
     res.status(200).json(response);
   } catch (error) {
     const response: ApiResponse<null> = {
