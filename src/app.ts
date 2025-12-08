@@ -2,6 +2,7 @@ import express from "express";
 import ad_router from "./routes/advertise.route";
 import upload_router from "./routes/upload.route";
 import cookieParser from "cookie-parser";
+import { config } from "./configs";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -13,7 +14,7 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS
 app.use((req, res, next) => {
   const origin = req.headers.origin;
 
-  if (origin && allowedOrigins.includes(origin)) {
+  if (origin && config.ALLOWED_ORIGINS.includes(origin)) {
     res.setHeader("Access-Control-Allow-Origin", origin);
   }
 
@@ -42,6 +43,6 @@ app.get("/health", (req, res) => {
 app.use("/v1/api", ad_router);
 app.use("/v1/api", upload_router);
 
-app.listen(PORT, () => {
+app.listen(config.PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });

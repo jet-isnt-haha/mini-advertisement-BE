@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "description": "A simple Express application using TypeScript.",
   "main": "dist/app.js",
-  "scripts": {
-    "build": "tsc && tsc-alias",
+   "scripts": {
+    "build": "tsc && tsc-alias && npm run copy-data",
+    "copy-data": "node -e \"require('fs').mkdirSync('dist/data',{recursive:true});require('fs').copyFileSync('src/data/db.json','dist/data/db.json')\"",
     "start": "node dist/app.js",
     "dev": "nodemon --watch src --ext ts --exec ts-node -r tsconfig-paths/register src/app.ts"
   },

@@ -1,3 +1,4 @@
+import { config } from "@/configs";
 import { advertisementMeta, ApiResponse } from "@/types";
 import { Request, Response } from "express";
 
@@ -18,7 +19,7 @@ export const uploadFile = (req: Request, res: Response) => {
       return {
         uid: file.filename.split("-")[1],
         name: file.filename,
-        url: `http://localhost:${PORT}/static/videos/${file.filename}`,
+        url: `${config.BASE_URL}/static/videos/${file.filename}`,
       };
     });
 
